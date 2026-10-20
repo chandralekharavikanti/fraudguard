@@ -50,8 +50,24 @@ See [the saved baseline results](reports/real_data_baseline.json).
 ### Interpretation
 The baseline detects most fraud cases but generates many false alarms: roughly **14 false alerts for each correctly detected fraud** (933 / 66). In a real review queue, this would impose significant operational cost. The next evaluation question is whether Random Forest achieves a better precision–recall balance and whether a threshold selected on **validation data** can reduce false positives without sacrificing too much recall.
 
-### Random Forest comparison
-Random Forest training is implemented and writes its measured results alongside Logistic Regression to `artifacts/metrics.json`. **Its measured values are not included in this README yet**, so no unsupported winner is declared. Copy the `random_forest` metrics from the generated JSON into the project documentation before making a final model recommendation. Do not select a model based on test-set tuning.
+### Model comparison: Logistic Regression vs Random Forest
+
+Both models were evaluated on the same **56,746-transaction time-ordered holdout** (74 fraudulent transactions) at the default **0.5 classification threshold**.
+
+| Metric | Logistic Regression | Random Forest |
+| --- | ---: | ---: |
+| PR-AUC / average precision | 0.7611 | **0.8127** |
+| Precision | 6.61% | **98.18%** |
+| Recall | **89.19%** | 72.97% |
+| F1-score | 12.30% | **83.72%** |
+| True positives (frauds caught) | **66** | 54 |
+| False negatives (frauds missed) | **8** | 20 |
+| False positives (false alarms) | 933 | **1** |
+| True negatives | 55,739 | **56,671** |
+
+**Conclusion:** At the evaluated threshold, **Random Forest is the stronger operational starting point** for a low-false-alarm fraud review queue: its PR-AUC is higher, and it produces just one false alert versus 933 for Logistic Regression. The trade-off is material: Random Forest misses **20 fraud cases**, compared with **8** for Logistic Regression. Neither model can be declared universally best without business-specific costs for missed fraud and investigation workload.
+
+**Important evaluation caveat:** These numbers come from one historical test holdout, not a live production evaluation. Threshold tuning or model selection should be performed on a separate validation partition, followed by a final untouched test evaluation. The test comparison here is descriptive, not a claim of unbiased optimized performance.
 
 ## Limitations and responsible interpretation
 - This is historical, anonymized benchmark data, **not a production-ready fraud detector**.
