@@ -1,0 +1,23 @@
+{
+  "split": "temporal 80/20 after deduplication",
+  "train_rows": 226980,
+  "test_rows": 56746,
+  "train_frauds": 399,
+  "test_frauds": 74,
+  "logistic_regression": {
+    "pr_auc": 0.7610720265811075,
+    "precision": 0.06606606606606606,
+    "recall": 0.8918918918918919,
+    "f1": 0.12301957129543337,
+    "confusion_matrix": [
+      [
+        55739,
+        933
+      ],
+      [
+        8,
+        66
+      ]
+    ]
+  }
+}

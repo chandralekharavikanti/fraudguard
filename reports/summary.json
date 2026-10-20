@@ -1,0 +1,11 @@
+{
+  "rows": 284807,
+  "fraud": 492,
+  "legitimate": 284315,
+  "fraud_rate": 0.001727485630620034,
+  "duplicates": 1081,
+  "amount_by_class": {
+    "0": 22,
+    "1": 9.25
+  }
+}

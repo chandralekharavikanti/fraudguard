@@ -1,0 +1,10 @@
+data/raw/*
+!data/raw/.gitkeep
+artifacts/
+reports/*
+!reports/real_data_baseline.json
+!reports/summary.json
+__pycache__/
+.pytest_cache/
+.venv/
+*.pyc
