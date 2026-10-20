@@ -1,4 +1,4 @@
-# FraudGuard AI — Real Credit Card Fraud Detection
+# FraudGuard — Real Credit Card Fraud Detection
 
 **Machine Learning / Data Science portfolio project** | Real ULB/Worldline credit-card transactions | Python, scikit-learn, pandas
 
